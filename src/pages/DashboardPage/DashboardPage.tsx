@@ -13,15 +13,12 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from 'recharts';
 import './DashboardPage.css';
 
-// Use your public IP or domain for production
-// For local testing: http://192.168.1.7:8000
-// For production: you need to expose your API publicly (ngrok, cloudflare tunnel, etc.)
-const API_URL = 'http://192.168.1.7:8000';
+// ngrok public HTTPS URL for API
+const API_URL = 'https://recursive-gaynelle-unperceivably.ngrok-free.dev';
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 export function DashboardPage() {
@@ -31,9 +28,9 @@ export function DashboardPage() {
     month_revenue: 0,
     total_turnover: 0,
   });
-  const [revenueTrend, setRevenueTrend] = useState([]);
-  const [products, setProducts] = useState([]);
-  const [districts, setDistricts] = useState([]);
+  const [revenueTrend, setRevenueTrend] = useState<any[]>([]);
+  const [products, setProducts] = useState<any[]>([]);
+  const [districts, setDistricts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -124,7 +121,7 @@ export function DashboardPage() {
                 outerRadius={60}
                 label
               >
-                {products.map((entry, index) => (
+                {products.map((_entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
